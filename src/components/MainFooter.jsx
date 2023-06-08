@@ -7,14 +7,14 @@ import { MdEmail } from "react-icons/md"
 
 const MainFooter = () => {
 	return (
-		<div className='bg-white'>
-			<footer className='footer place-items-center md:flex md:justify-between text-center md:text-start py-10 bg-white text-base-content w-[90%]  xl:w-[1290px] mx-auto'>
+		<div className='bg-white dark:bg-[#1e1e1e]'>
+			<footer className='footer dark:bg-[#1e1e1e] dark:text-white place-items-center md:flex md:justify-between md:items-start text-center md:text-start py-10 bg-white text-base-content w-[90%]  xl:w-[1290px] mx-auto dark:bg-slate-800'>
 				<div className="place-items-center md:place-items-start">
 					<p className='font-bold text-3xl '>PhotoStad</p>
 					<img
 						className='w-[131px] text-center'
 						src='./assets/images/logo.png'
-						alt=''
+						alt=' '
 					/>
 
 					<p className='w-[253px]'>
@@ -22,20 +22,20 @@ const MainFooter = () => {
 					</p>
 				</div>
 				<div  className="place-items-center md:place-items-start" >
-					<div className='font-bold text-black'>PRODUCTS</div>
+					<div className='font-bold text-black md:text-white'>PRODUCTS</div>
 					<a className='link link-hover '>Home</a>
 					<a className='link link-hover ' >Setting</a>
 					<a className='link link-hover'>Contact Us</a>
 					<a className='link link-hover'>About Us</a>
 				</div>
 				<div  className="place-items-center md:place-items-start" >
-					<span className='font-bold text-black'>USEFUL LINKS</span>
+					<span className='font-bold text-black md:text-white'>USEFUL LINKS</span>
 					<a className='link link-hover'>Certificate</a>
 					<a className='link link-hover'>Watermark</a>
 					<a className='link link-hover'>Account</a>
 				</div>
 				<div   className="place-items-center md:place-items-start " >
-					<span className='font-bold text-black'>CONTACT US</span>
+					<span className='font-bold text-black md:text-white'>CONTACT US</span>
 					<a className='link link-hover'>
 						{" "}
 						<AiFillHome className='inline me-2' /> Phnom Penh

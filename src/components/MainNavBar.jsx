@@ -5,7 +5,7 @@ import React from "react"
 const MainNavBar = () => {
 	const [logIN, setLogIN] = React.useState(true)
 	return (
-		<div className='bg-base-100 '>
+		<div className='bg-base-100 dark:bg-[#1e1e1e] '>
 			<div className='navbar h-[80px] w-[90%] xl:w-[1290px] mx-auto'>
 				<div className='navbar-start'>
 					<div className='dropdown'>
