@@ -1,12 +1,24 @@
 "use client"
 import Link from "next/link"
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { FiMoon } from "react-icons/fi"
+import { BsSun } from "react-icons/bs"
+import { useTheme } from "next-themes"
 
 const MainNavBar = () => {
-	const [logIN, setLogIN] = React.useState(true)
+	const { theme, setTheme } = useTheme('light')
+
+	const toggleDarkMode = () => {
+		setTheme(theme === "light" ? "dark" : "light")
+	}
+	useEffect(()=>{
+		toggleDarkMode()
+	},[])
+
+	const [logIN, setLogIN] = React.useState(false)
 	return (
-		<div className='bg-base-100 dark:bg-[#1e1e1e] '>
-			<div className='navbar h-[80px] w-[90%] xl:w-[1290px] mx-auto'>
+		<div className='bg-white dark:bg-[#1e1e1e] '>
+			<div className='navbar md:h-[80px]  xl:w-[1290px] mx-auto'>
 				<div className='navbar-start'>
 					<div className='dropdown'>
 						<label
@@ -49,14 +61,14 @@ const MainNavBar = () => {
 					</div>
 					<Link href={"/"}>
 						<img
-							className='w-[131px]'
+							className='md:w-[131px] w-[100px]'
 							src='./assets/images/logo.png'
 							alt='logo img'
 						/>
 					</Link>
 				</div>
 				<div className='navbar-center hidden lg:flex'>
-					<ul className='menu menu-horizontal px-1'>
+					<ul className='menu menu-horizontal px-1 dark:text-white'>
 						<li>
 							<a>Home</a>
 						</li>
@@ -73,23 +85,39 @@ const MainNavBar = () => {
 					</ul>
 				</div>
 				<div className='navbar-end space-x-2'>
-					<a className=''> moon </a>
+					{theme === "light" ? (
+						<button
+							onClick={toggleDarkMode}
+							className='mr-2'
+						>
+							{" "}
+							<FiMoon className='text-4xl' />{" "}
+						</button>
+					) : (
+						<button
+							onClick={toggleDarkMode}
+							className='mr-2'
+						>
+							{" "}
+							<BsSun className='text-4xl text-white' />
+						</button>
+					)}
 					{logIN ? (
 						<div className='avatar'>
-							<div className='w-12 md:ms-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
+							<div className='md:w-10 w-8 md:ms-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
 								<img src='./assets/images/avatar.jpg' />
 							</div>
 						</div>
 					) : (
 						<>
 							<Link
-								href={"#"}
+								href={"./login"}
 								className='bg-[#E85854] text-white font-[35px] text-center py-2  rounded-[16px] w-[88px]  text-[17px]'
 							>
 								Log in
 							</Link>
 							<Link
-								href={"#"}
+								href={"./signup"}
 								className='bg-[#E85854] text-white font-[35px] text-center py-2  rounded-[16px] w-[88px]  text-[17px]'
 							>
 								Sign Up
