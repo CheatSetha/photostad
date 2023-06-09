@@ -4,18 +4,33 @@ import React, { useEffect, useState } from "react"
 import { FiMoon } from "react-icons/fi"
 import { BsSun } from "react-icons/bs"
 import { useTheme } from "next-themes"
+import { usePathname } from "next/navigation"
+import { useSession, signOut } from "next-auth/react"
 
 const MainNavBar = () => {
-	const { theme, setTheme } = useTheme('light')
+	const [logIN, setLogIN] = useState(false)
+	// auth
+	const { data: session } = useSession()
 
-	const toggleDarkMode = () => {
-		setTheme(theme === "light" ? "dark" : "light")
+	// if log in set logIN to true
+	useEffect(() => {
+		if (session) {
+			setLogIN(true)
+		}
+	}, [session])
+
+	// end of auth config
+
+	const { systemTheme, theme, setTheme } = useTheme()
+	const currentTheme = theme === "system" ? systemTheme : theme
+	const toggleTheme = () => {
+		if (theme === "dark") {
+			setTheme("light")
+		} else {
+			setTheme("dark")
+		}
 	}
-	useEffect(()=>{
-		toggleDarkMode()
-	},[])
 
-	const [logIN, setLogIN] = React.useState(false)
 	return (
 		<div className='bg-white dark:bg-[#1e1e1e] '>
 			<div className='navbar md:h-[80px]  xl:w-[1290px] mx-auto'>
@@ -57,6 +72,20 @@ const MainNavBar = () => {
 							<li>
 								<a>About Us</a>
 							</li>
+							{session ? (
+								<li>
+								<a>profile</a>
+							</li>
+							) : (
+								<>
+								<li>
+									<a>log in</a>
+								</li>
+								<li>
+								<a>Sign up</a>
+							</li>
+							</>
+							)}
 						</ul>
 					</div>
 					<Link href={"/"}>
@@ -72,6 +101,7 @@ const MainNavBar = () => {
 						<li>
 							<a>Home</a>
 						</li>
+
 						<li>
 							<a>Watermark</a>
 						</li>
@@ -85,40 +115,54 @@ const MainNavBar = () => {
 					</ul>
 				</div>
 				<div className='navbar-end space-x-2'>
-					{theme === "light" ? (
-						<button
-							onClick={toggleDarkMode}
-							className='mr-2'
-						>
-							{" "}
-							<FiMoon className='text-4xl' />{" "}
-						</button>
-					) : (
-						<button
-							onClick={toggleDarkMode}
-							className='mr-2'
-						>
-							{" "}
-							<BsSun className='text-4xl text-white' />
-						</button>
-					)}
-					{logIN ? (
-						<div className='avatar'>
-							<div className='md:w-10 w-8 md:ms-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-								<img src='./assets/images/avatar.jpg' />
-							</div>
+					<button onClick={toggleTheme}>
+						{theme === "dark" ? (
+							<BsSun className='text-3xl text-white' />
+						) : (
+							<FiMoon className='text-3xl' />
+						)}
+					</button>
+					{session ? (
+						<div className='dropdown dropdown-end'>
+							<label
+								tabIndex={0}
+								className='btn btn-ghost btn-circle avatar'
+							>
+								<div className='md:w-10 w-8  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
+									<img src={session.user.image} />
+								</div>
+							</label>
+							<ul
+								tabIndex={0}
+								className='mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
+							>
+								<li>
+									<a className='justify-between'>{session.user.name}</a>
+								</li>
+								<li>
+									<a>Settings</a>
+								</li>
+								<li>
+									<button
+										className='py-2 bg-red-400'
+										onClick={() => signOut()}
+									>
+										sign out
+									</button>
+								</li>
+							</ul>
 						</div>
 					) : (
 						<>
 							<Link
 								href={"./login"}
-								className='bg-[#E85854] text-white font-[35px] text-center py-2  rounded-[16px] w-[88px]  text-[17px]'
+								className='bg-[#E85854] hidden md:block text-white font-[35px] text-center py-2  rounded-[16px] w-[88px]  text-[17px]'
 							>
 								Log in
 							</Link>
 							<Link
 								href={"./signup"}
-								className='bg-[#E85854] text-white font-[35px] text-center py-2  rounded-[16px] w-[88px]  text-[17px]'
+								className='bg-[#E85854] hidden md:block text-white font-[35px] text-center py-2  rounded-[16px] w-[88px]  text-[17px]'
 							>
 								Sign Up
 							</Link>

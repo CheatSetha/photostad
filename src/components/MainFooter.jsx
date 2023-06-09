@@ -5,8 +5,17 @@ import { AiFillHome } from "react-icons/ai"
 import { GiRotaryPhone } from "react-icons/gi"
 import { MdEmail } from "react-icons/md"
 import {FaRegCopyright} from "react-icons/fa"
+import { usePathname } from "next/navigation"
 
 const MainFooter = () => {
+	const pathName = usePathname()
+	console.log(pathName)
+
+	if (pathName.includes("/login")) {
+		return null
+	}
+
+	if (pathName.includes("/signup")) return null
 	return (
 		<div className='bg-white dark:bg-[#1e1e1e]'>
 			<footer className='footer dark:bg-[#1e1e1e] dark:text-white place-items-center md:flex md:justify-between md:items-start text-center md:text-start py-10 bg-white text-base-content w-[90%]  xl:w-[1290px] mx-auto '>
