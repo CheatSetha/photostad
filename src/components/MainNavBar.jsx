@@ -70,7 +70,7 @@ const MainNavBar = () => {
 				<div className='navbar-center hidden lg:flex'>
 					<ul className='menu menu-horizontal px-1 dark:text-white'>
 						<li>
-							<a>Home</a>
+							<a href="/">Home</a>
 						</li>
 						<li>
 							<a>Watermark</a>
