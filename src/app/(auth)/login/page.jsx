@@ -5,6 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import { FcGoogle } from "react-icons/fc"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 const validationShcema = Yup.object({
 	email: Yup.string().email("Invalid email address").required("Required"),
@@ -30,11 +31,13 @@ const Page = () => {
 	}
 
 	return (
-		<div className='bg-white dark:bg-slate-800 w-full flex flex-wrap  '>
+		<div className='bg-white dark:bg-slate-800 xl:w-[1290px] w-full justify-center items-center h-[100vh] flex flex-wrap  '>
 			<div className='w-1/2 hidden md:flex justify-end items-center '>
 				<img
-					className='w-96 flex  '
-					src='./assets/images/signup.png'
+				
+
+					className='w-96   '
+					src='/assets/images/signup.png'
 					alt='sign up logo'
 				/>
 			</div>

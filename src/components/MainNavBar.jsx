@@ -18,6 +18,7 @@ const MainNavBar = () => {
 			setLogIN(true)
 		}
 	}, [session])
+	
 
 	// end of auth config
 
@@ -30,9 +31,17 @@ const MainNavBar = () => {
 			setTheme("dark")
 		}
 	}
+	const pathName = usePathname()
+	console.log(pathName)
+
+	if (pathName.includes("/login")) {
+		return null
+	}
+
+	if (pathName.includes("/signup")) return null
 
 	return (
-		<div className='bg-white dark:bg-[#1e1e1e] '>
+		<div className='bg-white z-50 dark:bg-[#1e1e1e] sticky top-0 '>
 			<div className='navbar md:h-[80px]  xl:w-[1290px] mx-auto'>
 				<div className='navbar-start'>
 					<div className='dropdown'>
@@ -99,7 +108,7 @@ const MainNavBar = () => {
 				<div className='navbar-center hidden lg:flex'>
 					<ul className='menu menu-horizontal px-1 dark:text-white'>
 						<li>
-							<a href="/">Home</a>
+							<Link href="/">Home</Link>
 						</li>
 
 						<li>

@@ -62,10 +62,10 @@ const Page = () => {
 	}
 
 	return (
-		<div className='bg-white dark:bg-slate-800 w-full flex flex-wrap  '>
+		<div className='bg-white dark:bg-slate-800 w-full xl:w-[1290px] mx-auto items-center h-[100vh] flex flex-wrap  '>
 			<div className='w-1/2 hidden md:flex justify-end items-center'>
 				<img
-					className='w-96 flex'
+					className='w-96'
 					src='./assets/images/signup.png'
 					alt='sign up logo'
 				/>
