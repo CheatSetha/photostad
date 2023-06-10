@@ -30,3 +30,13 @@
 *{
   font-family: inter, sans-serif;
 }
+
+/* ===========home page ============*/
+.watermark{
+  background: linear-gradient(135deg, #FFF5C3 0%, #9452A5 100%);
+  border-radius: 26px;
+}
+.certificate{
+background: linear-gradient(135deg, #FAD7A1 0%, #E96D71 100%);
+  border-radius: 26px;
+}
